@@ -17,6 +17,11 @@ apply plugin: 'maven'
 group = 'com.github.openviglet'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
 
 jar {
     baseName = 'turing-java-sdk'
@@ -36,4 +41,8 @@ dependencies {
     
     // HTTP Client
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version:"${httpClientVersion}"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.9'
 }
