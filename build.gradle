@@ -12,12 +12,15 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = 'com.github.openviglet'
 
 sourceCompatibility = 1.8
 
 jar {
     baseName = 'turing-java-sdk'
-    version =  '0.1.0'
+    version =  '0.3.1'
 }
 
 repositories {		
