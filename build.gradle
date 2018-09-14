@@ -1,0 +1,36 @@
+buildscript {
+    ext { jsonVersion = '20140107'
+	      log4jVersion = '1.2.7'
+		  httpClientVersion = '4.5.2'
+		  swaggerVersion = '2.8.0'
+		  jgitVersion = '4.11.0.201803080745-r'
+		 }
+		repositories {
+			mavenCentral()
+		}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+jar {
+    baseName = 'turing-java-sdk'
+    version =  '0.1.0'
+}
+
+repositories {		
+        mavenCentral()
+}
+
+dependencies {
+   // JSON
+    compile group: 'org.json', name: 'json', version:"${jsonVersion}"
+    
+    // Log4J
+    compile group: 'log4j', name: 'log4j', version: "${log4jVersion}"
+    
+    // HTTP Client
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version:"${httpClientVersion}"
+}
