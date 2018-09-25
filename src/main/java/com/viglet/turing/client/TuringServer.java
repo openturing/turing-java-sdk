@@ -19,6 +19,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.viglet.turing.client.TuringQuery.ORDER;
 import com.viglet.turing.client.response.QueryTuringResponse;
 
 public class TuringServer {
@@ -68,7 +69,15 @@ public class TuringServer {
 
 				if (turingSortField.getSort() != null) {
 					if (turingSortField.getField() == null) {
-						turingURL.addParameter("sort", turingSortField.getSort().name());
+						String orderMod = null;
+						if (turingSortField.getSort().name().equals(ORDER.desc.name())) {
+							orderMod = "newest";
+						} else if (turingSortField.getSort().name().equals(ORDER.asc.name())) {
+							orderMod = "oldest";
+						} else {
+							orderMod = "relevance";
+						}
+						turingURL.addParameter("sort", orderMod);
 					} else {
 						turingURL.addParameter("sort",
 								String.format("%s %s", turingSortField.getField(), turingSortField.getSort().name()));
