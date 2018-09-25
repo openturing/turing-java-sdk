@@ -14,7 +14,6 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.viglet.turing.client.response.QueryTuringResponse;
@@ -38,42 +37,55 @@ public class TuringServer {
 		this.turingServer = turingServer;
 	}
 
-	public QueryTuringResponse query(TuringQuery turingQuery)
-			throws ClientProtocolException, IOException, JSONException, URISyntaxException {
+	public QueryTuringResponse query(TuringQuery turingQuery) {
 		this.turingQuery = turingQuery;
 		CloseableHttpClient client = HttpClients.createDefault();
-
-		URIBuilder turingURL = new URIBuilder(turingServer + "/search").addParameter("q", this.turingQuery.getQuery());
-
-		HttpGet httpGet = new HttpGet(turingURL.build());
-		httpGet.setHeader("Accept", "application/json");
-		httpGet.setHeader("Content-type", "application/json");
-		httpGet.setHeader("Accept-Encoding", "UTF-8");
-
-		HttpResponse response = client.execute(httpGet);
-
-		BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-
-		StringBuffer result = new StringBuffer();
-		String line = "";
-		while ((line = rd.readLine()) != null) {
-			result.append(line);
-		}
-		JSONArray resultJSON = new JSONObject(result.toString()).getJSONObject("results").getJSONArray("document");
-
 		QueryTuringResponse queryTuringResponse = new QueryTuringResponse();
-		TuringDocumentList turingDocumentList = new TuringDocumentList();
-		List<TuringDocument> turingDocuments = new ArrayList<TuringDocument>();
+		URIBuilder turingURL;
 
-		for (int i = 0; i < resultJSON.length(); i++) {
-			TuringDocument turingDocument = new TuringDocument();
-			turingDocument.setContent(resultJSON.getJSONObject(i));
-			turingDocuments.add(turingDocument);
+		HttpGet httpGet;
+		try {
+			turingURL = new URIBuilder(turingServer + "/search").addParameter("q", this.turingQuery.getQuery());
+			httpGet = new HttpGet(turingURL.build());
+
+			httpGet.setHeader("Accept", "application/json");
+			httpGet.setHeader("Content-type", "application/json");
+			httpGet.setHeader("Accept-Encoding", "UTF-8");
+			HttpResponse response;
+
+			response = client.execute(httpGet);
+
+			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			StringBuffer result = new StringBuffer();
+			String line = "";
+			while ((line = rd.readLine()) != null) {
+				result.append(line);
+			}
+			JSONArray resultJSON = new JSONObject(result.toString()).getJSONObject("results").getJSONArray("document");
+
+			TuringDocumentList turingDocumentList = new TuringDocumentList();
+			List<TuringDocument> turingDocuments = new ArrayList<TuringDocument>();
+
+			for (int i = 0; i < resultJSON.length(); i++) {
+				TuringDocument turingDocument = new TuringDocument();
+				turingDocument.setContent(resultJSON.getJSONObject(i));
+				turingDocuments.add(turingDocument);
+			}
+
+			turingDocumentList.setTuringDocuments(turingDocuments);
+
+			queryTuringResponse.setResults(turingDocumentList);
+
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		turingDocumentList.setTuringDocuments(turingDocuments);
-
-		queryTuringResponse.setResults(turingDocumentList);
 
 		return queryTuringResponse;
 	}
