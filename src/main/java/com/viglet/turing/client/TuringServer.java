@@ -46,6 +46,9 @@ public class TuringServer {
 		HttpGet httpGet;
 		try {
 			turingURL = new URIBuilder(turingServer + "/search").addParameter("q", this.turingQuery.getQuery());
+			if (this.turingQuery.getRows() > 0) {
+				turingURL.addParameter("sort", Integer.toString(this.turingQuery.getRows()));
+			}
 			httpGet = new HttpGet(turingURL.build());
 
 			httpGet.setHeader("Accept", "application/json");
