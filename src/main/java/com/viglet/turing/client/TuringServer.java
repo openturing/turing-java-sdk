@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -46,9 +49,50 @@ public class TuringServer {
 		HttpGet httpGet;
 		try {
 			turingURL = new URIBuilder(turingServer + "/search").addParameter("q", this.turingQuery.getQuery());
+
+			// Rows
 			if (this.turingQuery.getRows() > 0) {
 				turingURL.addParameter("rows", Integer.toString(this.turingQuery.getRows()));
 			}
+
+			// Field Query
+			if (this.turingQuery.getFieldQueries() != null) {
+				for (String fieldQuery : this.turingQuery.getFieldQueries()) {
+					turingURL.addParameter("fq[]", fieldQuery);
+				}
+			}
+
+			// Sort
+			if (this.turingQuery.getSortField() != null) {
+				TuringSortField turingSortField = this.turingQuery.getSortField();
+
+				if (turingSortField.getSort() != null) {
+					if (turingSortField.getField() == null) {
+						turingURL.addParameter("sort", turingSortField.getSort().name());
+					} else {
+						turingURL.addParameter("sort",
+								String.format("%s %s", turingSortField.getField(), turingSortField.getSort().name()));
+					}
+				}
+			}
+
+			// Between Dates
+			if (this.turingQuery.getBetweenDates() != null) {
+				TurClientBetweenDates turClientBetweenDates = this.turingQuery.getBetweenDates();
+				if (turClientBetweenDates.getField() != null && turClientBetweenDates.getStartDate() != null
+						&& turClientBetweenDates.getEndDate() != null) {
+					TimeZone tz = TimeZone.getTimeZone("UTC");
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+					df.setTimeZone(tz);
+
+					String fieldDate = turClientBetweenDates.getField();
+					String startDate = df.format(turClientBetweenDates.getStartDate());
+					String endDate = df.format(turClientBetweenDates.getEndDate());
+
+					turingURL.addParameter("fq[]", String.format("%s:[%s TO %s]", fieldDate, startDate, endDate));
+				}
+			}
+
 			httpGet = new HttpGet(turingURL.build());
 
 			httpGet.setHeader("Accept", "application/json");
