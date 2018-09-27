@@ -104,6 +104,13 @@ public class TuringServer {
 				}
 			}
 
+			// Page Number
+			if (this.turingQuery.getPageNumber() > 0) {
+				turingURL.addParameter("p", String.format(Integer.toString(this.turingQuery.getPageNumber())));
+			} else {
+				turingURL.addParameter("p", "1");
+			}
+			
 			httpGet = new HttpGet(turingURL.build());
 
 			httpGet.setHeader("Accept", "application/json");

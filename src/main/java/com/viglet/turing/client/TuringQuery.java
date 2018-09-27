@@ -14,7 +14,8 @@ public class TuringQuery {
 	private TuringSortField sortField;
 	private TurClientBetweenDates betweenDates;
 	private List<String> fieldQueries;
-
+	private int pageNumber;
+	
 	public String getQuery() {
 		return query;
 	}
@@ -85,7 +86,12 @@ public class TuringQuery {
 		this.fieldQueries = fieldQueries;
 	}
 
+	public int getPageNumber() {
+		return pageNumber;
+	}
 
-	
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
 	
 }
