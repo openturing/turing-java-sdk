@@ -19,8 +19,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viglet.turing.client.TuringQuery.ORDER;
 import com.viglet.turing.client.response.QueryTuringResponse;
+import com.viglet.turing.sn.TurSNSiteSearchQueryContext;
 
 public class TuringServer {
 	private String turingServer;
@@ -128,8 +130,13 @@ public class TuringServer {
 				turingDocuments.add(turingDocument);
 			}
 
-			turingDocumentList.setTuringDocuments(turingDocuments);
+			JSONObject queryContextJSON = new JSONObject(result.toString()).getJSONObject("queryContext");
+			ObjectMapper mapper = new ObjectMapper();
+			TurSNSiteSearchQueryContext turSNSiteSearchQueryContext = mapper.readValue(queryContextJSON.toString(),
+					TurSNSiteSearchQueryContext.class);
 
+			turingDocumentList.setTuringDocuments(turingDocuments);
+			turingDocumentList.setQueryContext(turSNSiteSearchQueryContext);
 			queryTuringResponse.setResults(turingDocumentList);
 
 		} catch (URISyntaxException e) {
