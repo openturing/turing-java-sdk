@@ -93,7 +93,7 @@ public class TuringServer {
 				if (turClientBetweenDates.getField() != null && turClientBetweenDates.getStartDate() != null
 						&& turClientBetweenDates.getEndDate() != null) {
 					TimeZone tz = TimeZone.getTimeZone("UTC");
-					DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 					df.setTimeZone(tz);
 
 					String fieldDate = turClientBetweenDates.getField();
