@@ -1,5 +1,8 @@
 package com.viglet.turing.sn;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchQueryContext {
 
 	private int count;
