@@ -23,8 +23,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viglet.turing.client.TuringQuery.ORDER;
 import com.viglet.turing.client.response.QueryTuringResponse;
 import com.viglet.turing.sn.TurSNSiteSearchQueryContext;
+import java.util.logging.*;
 
 public class TuringServer {
+	
+	private static Logger logger = Logger.getLogger(TuringServer.class.getName());
+	
 	private String turingServer;
 
 	private TuringQuery turingQuery;
@@ -118,6 +122,8 @@ public class TuringServer {
 			httpGet.setHeader("Accept-Encoding", "UTF-8");
 			HttpResponse response;
 
+			logger.info(String.format("Viglet Turing Request: %s", turingURL.build().toString()));
+			
 			response = client.execute(httpGet);
 
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
