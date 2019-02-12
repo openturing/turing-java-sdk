@@ -10,11 +10,15 @@ public class TuringDocument {
 	public Object getFieldValue(String field) {
 
 		try {
-			return content.getJSONObject("fields").get(field);
+			if (content.has("fields") && content.getJSONObject("fields").has(field)) {
+				return content.getJSONObject("fields").get(field);
+			} else {
+				return null;
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 

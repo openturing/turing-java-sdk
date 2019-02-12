@@ -1,5 +1,6 @@
 buildscript {
     ext { jsonVersion = '20140107'
+    	  jacksonVersion = '2.9.7'
 	      log4jVersion = '1.2.7'
 		  httpClientVersion = '4.5.2'
 		  swaggerVersion = '2.8.0'
@@ -20,16 +21,25 @@ sourceCompatibility = 1.8
 
 jar {
     baseName = 'turing-java-sdk'
-    version =  '0.3.1'
+    version =  '0.3.2'
 }
 
 repositories {		
         mavenCentral()
 }
 
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+    destinationDir = file("docs")
+}
+
 dependencies {
-   // JSON
+   	// JSON
     compile group: 'org.json', name: 'json', version:"${jsonVersion}"
+    
+    // Jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
     
     // Log4J
     compile group: 'log4j', name: 'log4j', version: "${log4jVersion}"
