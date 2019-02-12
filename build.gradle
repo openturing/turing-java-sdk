@@ -28,6 +28,12 @@ repositories {
         mavenCentral()
 }
 
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+    destinationDir = file("docs")
+}
+
 dependencies {
    	// JSON
     compile group: 'org.json', name: 'json', version:"${jsonVersion}"
