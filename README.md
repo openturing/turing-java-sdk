@@ -18,7 +18,7 @@ class HelloWorldApp {
 		HttpTuringServer turingServer = new HttpTuringServer("http://localhost:2700/api/sn/Sample");
 
 		TuringQuery query = new TuringQuery();
-		query.setQuery("hello" );
+		query.setQuery("hello");
 		query.setRows(10);
 		query.setSortField(TuringQuery.ORDER.asc);
 		query.setPageNumber(1);
