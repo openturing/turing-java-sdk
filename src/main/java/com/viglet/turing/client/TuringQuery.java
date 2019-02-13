@@ -14,8 +14,9 @@ public class TuringQuery {
 	private TuringSortField sortField;
 	private TurClientBetweenDates betweenDates;
 	private List<String> fieldQueries;
+	private List<String> targetingRules;
 	private int pageNumber;
-	
+
 	public String getQuery() {
 		return query;
 	}
@@ -86,6 +87,23 @@ public class TuringQuery {
 		this.fieldQueries = fieldQueries;
 	}
 
+	public void addTargetingRule(String... tr) {
+		if (this.targetingRules == null) {
+			this.targetingRules = new ArrayList<String>();
+		}
+		for (int i = 0; i < tr.length; i++) {
+			targetingRules.add(tr[i]);
+		}
+	}
+
+	public List<String> getTargetingRules() {
+		return targetingRules;
+	}
+
+	public void setTargetingRules(List<String> targetingRules) {
+		this.targetingRules = targetingRules;
+	}
+
 	public int getPageNumber() {
 		return pageNumber;
 	}
@@ -93,5 +111,5 @@ public class TuringQuery {
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
 	}
-	
+
 }

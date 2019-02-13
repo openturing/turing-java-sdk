@@ -26,9 +26,9 @@ import com.viglet.turing.sn.TurSNSiteSearchQueryContext;
 import java.util.logging.*;
 
 public class TuringServer {
-	
+
 	private static Logger logger = Logger.getLogger(TuringServer.class.getName());
-	
+
 	private String turingServer;
 
 	private TuringQuery turingQuery;
@@ -66,6 +66,13 @@ public class TuringServer {
 			if (this.turingQuery.getFieldQueries() != null) {
 				for (String fieldQuery : this.turingQuery.getFieldQueries()) {
 					turingURL.addParameter("fq[]", fieldQuery);
+				}
+			}
+
+			// Targeting Rule
+			if (this.turingQuery.getTargetingRules() != null) {
+				for (String targetingRule : this.turingQuery.getTargetingRules()) {
+					turingURL.addParameter("tr[]", targetingRule);
 				}
 			}
 
@@ -114,7 +121,7 @@ public class TuringServer {
 			} else {
 				turingURL.addParameter("p", "1");
 			}
-			
+
 			httpGet = new HttpGet(turingURL.build());
 
 			httpGet.setHeader("Accept", "application/json");
@@ -123,7 +130,7 @@ public class TuringServer {
 			HttpResponse response;
 
 			logger.info(String.format("Viglet Turing Request: %s", turingURL.build().toString()));
-			
+
 			response = client.execute(httpGet);
 
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
