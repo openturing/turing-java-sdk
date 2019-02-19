@@ -1,5 +1,5 @@
 
-[![](https://jitpack.io/v/openviglet/turing-java-sdk.svg)](https://jitpack.io/#openviglet/turing-java-sdk)
+[![](https://jitpack.io/v/openturing/turing-java-sdk.svg)](https://jitpack.io/#openturing/turing-java-sdk)
 
 # Java library to access Viglet Turing
 
