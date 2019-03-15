@@ -1,6 +1,8 @@
 
 [![](https://jitpack.io/v/openturing/turing-java-sdk.svg)](https://jitpack.io/#openturing/turing-java-sdk)
 
+[![viglet_logo.png](https://openturing.github.io/turing/img/banner/viglet_turing.png)](http://viglet.com/turing)
+
 # Java library to access Viglet Turing
 
 
