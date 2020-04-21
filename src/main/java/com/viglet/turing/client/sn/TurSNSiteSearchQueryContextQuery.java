@@ -1,4 +1,4 @@
-package com.viglet.turing.sn;
+package com.viglet.turing.client.sn;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

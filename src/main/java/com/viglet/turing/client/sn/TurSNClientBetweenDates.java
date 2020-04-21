@@ -1,8 +1,8 @@
-package com.viglet.turing.client;
+package com.viglet.turing.client.sn;
 
 import java.util.Date;
 
-public class TurClientBetweenDates {
+public class TurSNClientBetweenDates {
 	
 	private String field;
 	
@@ -10,7 +10,7 @@ public class TurClientBetweenDates {
 	
 	private Date endDate;
 
-	public TurClientBetweenDates(String field, Date startDate, Date endDate) {
+	public TurSNClientBetweenDates(String field, Date startDate, Date endDate) {
 		this.setField(field);
 		this.setStartDate(startDate);
 		this.setEndDate(endDate);

@@ -1,18 +1,18 @@
-package com.viglet.turing.client;
+package com.viglet.turing.client.sn;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TuringQuery {
+public class TurSNQuery {
 	public enum ORDER {
 		asc, desc
 	}
 
 	private String query;
 	private int rows;
-	private TuringSortField sortField;
-	private TurClientBetweenDates betweenDates;
+	private TurSNSortField sortField;
+	private TurSNClientBetweenDates betweenDates;
 	private List<String> fieldQueries;
 	private List<String> targetingRules;
 	private int pageNumber;
@@ -33,41 +33,41 @@ public class TuringQuery {
 		this.rows = rows;
 	}
 
-	public TuringSortField getSortField() {
+	public TurSNSortField getSortField() {
 		return sortField;
 	}
 
-	public void setSortField(TuringSortField sortField) {
+	public void setSortField(TurSNSortField sortField) {
 		this.sortField = sortField;
 	}
 
-	public void setSortField(String field, TuringQuery.ORDER sort) {
+	public void setSortField(String field, TurSNQuery.ORDER sort) {
 		if (this.sortField == null) {
-			this.sortField = new TuringSortField();
+			this.sortField = new TurSNSortField();
 		}
 		this.sortField.setField(field);
 		this.sortField.setSort(sort);
 	}
 
-	public void setSortField(TuringQuery.ORDER sort) {
+	public void setSortField(TurSNQuery.ORDER sort) {
 		if (this.sortField == null) {
-			this.sortField = new TuringSortField();
+			this.sortField = new TurSNSortField();
 		}
 		this.sortField.setField(null);
 		this.sortField.setSort(sort);
 	}
 
-	public TurClientBetweenDates getBetweenDates() {
+	public TurSNClientBetweenDates getBetweenDates() {
 		return betweenDates;
 	}
 
-	public void setBetweenDates(TurClientBetweenDates betweenDates) {
+	public void setBetweenDates(TurSNClientBetweenDates betweenDates) {
 		this.betweenDates = betweenDates;
 	}
 
 	public void setBetweenDates(String field, Date startDate, Date endDate) {
 
-		this.betweenDates = new TurClientBetweenDates(field, startDate, endDate);
+		this.betweenDates = new TurSNClientBetweenDates(field, startDate, endDate);
 	}
 
 	public void addFilterQuery(String... fq) {
