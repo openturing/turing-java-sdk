@@ -1,14 +1,3 @@
-
-[![](https://jitpack.io/v/openturing/turing-java-sdk.svg)](https://jitpack.io/#openturing/turing-java-sdk)
-
-[![viglet_logo.png](https://openturing.github.io/turing/img/banner/viglet_turing.png)](http://viglet.com/turing)
-
-# Java library to access Viglet Turing
-
-
-Documentation: [https://openturing.github.io/turing-java-sdk/](https://openturing.github.io/turing-java-sdk/)
-
-```java
 package com.viglet.turing.client.sn.sample;
 
 import com.viglet.turing.client.sn.HttpTurSNServer;
@@ -31,4 +20,3 @@ public class TurSNClientSample {
 		TurSNDocumentList turSNResults = response.getResults();
 	}
 }
-```
