@@ -1,4 +1,4 @@
-package com.viglet.turing.client;
+package com.viglet.turing.client.sn;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,72 +20,72 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viglet.turing.client.TuringQuery.ORDER;
-import com.viglet.turing.client.response.QueryTuringResponse;
-import com.viglet.turing.sn.TurSNSiteSearchQueryContext;
+import com.viglet.turing.client.sn.TurSNQuery.ORDER;
+import com.viglet.turing.client.sn.response.QueryTurSNResponse;
+
 import java.util.logging.*;
 
-public class TuringServer {
+public class TurSNServer {
 
-	private static Logger logger = Logger.getLogger(TuringServer.class.getName());
+	private static Logger logger = Logger.getLogger(TurSNServer.class.getName());
 
-	private String turingServer;
+	private String turSNServer;
 
-	private TuringQuery turingQuery;
+	private TurSNQuery turSNQuery;
 
-	public TuringServer(String turingServer) {
+	public TurSNServer(String turSNServer) {
 		super();
-		this.turingServer = turingServer;
+		this.turSNServer = turSNServer;
 
 	}
 
 	public String getTuringServer() {
-		return turingServer;
+		return turSNServer;
 	}
 
 	public void setTuringServer(String turingServer) {
-		this.turingServer = turingServer;
+		this.turSNServer = turingServer;
 	}
 
-	public QueryTuringResponse query(TuringQuery turingQuery) {
-		this.turingQuery = turingQuery;
+	public QueryTurSNResponse query(TurSNQuery turSNQuery) {
+		this.turSNQuery = turSNQuery;
 		CloseableHttpClient client = HttpClients.createDefault();
-		QueryTuringResponse queryTuringResponse = new QueryTuringResponse();
+		QueryTurSNResponse queryTuringResponse = new QueryTurSNResponse();
 		URIBuilder turingURL;
 
 		HttpGet httpGet;
 		try {
-			turingURL = new URIBuilder(turingServer + "/search").addParameter("q", this.turingQuery.getQuery());
+			turingURL = new URIBuilder(turSNServer + "/search").addParameter("q", this.turSNQuery.getQuery());
 
 			// Rows
-			if (this.turingQuery.getRows() > 0) {
-				turingURL.addParameter("rows", Integer.toString(this.turingQuery.getRows()));
+			if (this.turSNQuery.getRows() > 0) {
+				turingURL.addParameter("rows", Integer.toString(this.turSNQuery.getRows()));
 			}
 
 			// Field Query
-			if (this.turingQuery.getFieldQueries() != null) {
-				for (String fieldQuery : this.turingQuery.getFieldQueries()) {
+			if (this.turSNQuery.getFieldQueries() != null) {
+				for (String fieldQuery : this.turSNQuery.getFieldQueries()) {
 					turingURL.addParameter("fq[]", fieldQuery);
 				}
 			}
 
 			// Targeting Rule
-			if (this.turingQuery.getTargetingRules() != null) {
-				for (String targetingRule : this.turingQuery.getTargetingRules()) {
+			if (this.turSNQuery.getTargetingRules() != null) {
+				for (String targetingRule : this.turSNQuery.getTargetingRules()) {
 					turingURL.addParameter("tr[]", targetingRule);
 				}
 			}
 
 			// Sort
-			if (this.turingQuery.getSortField() != null) {
-				TuringSortField turingSortField = this.turingQuery.getSortField();
+			if (this.turSNQuery.getSortField() != null) {
+				TurSNSortField turSortField = this.turSNQuery.getSortField();
 
-				if (turingSortField.getSort() != null) {
-					if (turingSortField.getField() == null) {
+				if (turSortField.getSort() != null) {
+					if (turSortField.getField() == null) {
 						String orderMod = null;
-						if (turingSortField.getSort().name().equals(ORDER.desc.name())) {
+						if (turSortField.getSort().name().equals(ORDER.desc.name())) {
 							orderMod = "newest";
-						} else if (turingSortField.getSort().name().equals(ORDER.asc.name())) {
+						} else if (turSortField.getSort().name().equals(ORDER.asc.name())) {
 							orderMod = "oldest";
 						} else {
 							orderMod = "relevance";
@@ -93,14 +93,14 @@ public class TuringServer {
 						turingURL.addParameter("sort", orderMod);
 					} else {
 						turingURL.addParameter("sort",
-								String.format("%s %s", turingSortField.getField(), turingSortField.getSort().name()));
+								String.format("%s %s", turSortField.getField(), turSortField.getSort().name()));
 					}
 				}
 			}
 
 			// Between Dates
-			if (this.turingQuery.getBetweenDates() != null) {
-				TurClientBetweenDates turClientBetweenDates = this.turingQuery.getBetweenDates();
+			if (this.turSNQuery.getBetweenDates() != null) {
+				TurSNClientBetweenDates turClientBetweenDates = this.turSNQuery.getBetweenDates();
 				if (turClientBetweenDates.getField() != null && turClientBetweenDates.getStartDate() != null
 						&& turClientBetweenDates.getEndDate() != null) {
 					TimeZone tz = TimeZone.getTimeZone("UTC");
@@ -116,8 +116,8 @@ public class TuringServer {
 			}
 
 			// Page Number
-			if (this.turingQuery.getPageNumber() > 0) {
-				turingURL.addParameter("p", String.format(Integer.toString(this.turingQuery.getPageNumber())));
+			if (this.turSNQuery.getPageNumber() > 0) {
+				turingURL.addParameter("p", String.format(Integer.toString(this.turSNQuery.getPageNumber())));
 			} else {
 				turingURL.addParameter("p", "1");
 			}
@@ -141,13 +141,13 @@ public class TuringServer {
 			}
 			JSONArray resultJSON = new JSONObject(result.toString()).getJSONObject("results").getJSONArray("document");
 
-			TuringDocumentList turingDocumentList = new TuringDocumentList();
-			List<TuringDocument> turingDocuments = new ArrayList<TuringDocument>();
+			TurSNDocumentList turSNDocumentList = new TurSNDocumentList();
+			List<TurSNDocument> turSNDocuments = new ArrayList<>();
 
 			for (int i = 0; i < resultJSON.length(); i++) {
-				TuringDocument turingDocument = new TuringDocument();
-				turingDocument.setContent(resultJSON.getJSONObject(i));
-				turingDocuments.add(turingDocument);
+				TurSNDocument turSNDocument = new TurSNDocument();
+				turSNDocument.setContent(resultJSON.getJSONObject(i));
+				turSNDocuments.add(turSNDocument);
 			}
 
 			JSONObject queryContextJSON = new JSONObject(result.toString()).getJSONObject("queryContext");
@@ -155,9 +155,9 @@ public class TuringServer {
 			TurSNSiteSearchQueryContext turSNSiteSearchQueryContext = mapper.readValue(queryContextJSON.toString(),
 					TurSNSiteSearchQueryContext.class);
 
-			turingDocumentList.setTuringDocuments(turingDocuments);
-			turingDocumentList.setQueryContext(turSNSiteSearchQueryContext);
-			queryTuringResponse.setResults(turingDocumentList);
+			turSNDocumentList.setTurSNDocuments(turSNDocuments);
+			turSNDocumentList.setQueryContext(turSNSiteSearchQueryContext);
+			queryTuringResponse.setResults(turSNDocumentList);
 
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block

@@ -1,9 +1,9 @@
-package com.viglet.turing.client;
+package com.viglet.turing.client.sn;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class TuringDocument {
+public class TurSNDocument {
 
 	private JSONObject content;
 
