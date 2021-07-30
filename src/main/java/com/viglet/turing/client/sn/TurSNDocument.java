@@ -1,25 +1,33 @@
 package com.viglet.turing.client.sn;
 
-import com.viglet.turing.api.sn.bean.TurSNSiteSearchDocumentBean;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TurSNDocument {
 
-	private TurSNSiteSearchDocumentBean turSNSiteSearchDocumentBean;
+	private JSONObject content;
 
 	public Object getFieldValue(String field) {
-		if (turSNSiteSearchDocumentBean != null && turSNSiteSearchDocumentBean.getFields() != null && turSNSiteSearchDocumentBean.getFields().containsKey(field)) {
-			return turSNSiteSearchDocumentBean.getFields().get(field);
-		} else {
-			return null;
+
+		try {
+			if (content.has("fields") && content.getJSONObject("fields").has(field)) {
+				return content.getJSONObject("fields").get(field);
+			} else {
+				return null;
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
+
+		return null;
 	}
 
-	public TurSNSiteSearchDocumentBean getContent() {
-		return turSNSiteSearchDocumentBean;
+	public JSONObject getContent() {
+		return content;
 	}
 
-	public void setContent(TurSNSiteSearchDocumentBean turSNSiteSearchDocumentBean) {
-		this.turSNSiteSearchDocumentBean = turSNSiteSearchDocumentBean;
+	public void setContent(JSONObject content) {
+		this.content = content;
 	}
 
 }
