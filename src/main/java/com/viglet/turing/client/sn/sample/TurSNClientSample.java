@@ -6,6 +6,7 @@ import com.viglet.turing.client.sn.TurSNQuery;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
 public class TurSNClientSample {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		HttpTurSNServer turSNServer = new HttpTurSNServer("http://localhost:2700/api/sn/Sample");
