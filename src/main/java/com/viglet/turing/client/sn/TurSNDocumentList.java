@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
+
 public class TurSNDocumentList implements Iterable<TurSNDocument> {
 	private List<TurSNDocument> turSNDocuments = new ArrayList<>();
 	private TurSNSiteSearchQueryContext queryContext;

@@ -1,25 +1,26 @@
 package com.viglet.turing.client.sn;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.viglet.turing.api.sn.bean.TurSNSiteSearchBean;
+import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
 import com.viglet.turing.client.sn.TurSNQuery.ORDER;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
@@ -49,11 +50,12 @@ public class TurSNServer {
 
 	public QueryTurSNResponse query(TurSNQuery turSNQuery) {
 		this.turSNQuery = turSNQuery;
-		CloseableHttpClient client = HttpClients.createDefault();
+
 		QueryTurSNResponse queryTuringResponse = new QueryTurSNResponse();
 		URIBuilder turingURL;
 
 		HttpGet httpGet;
+
 		try {
 			turingURL = new URIBuilder(turSNServer + "/search").addParameter("q", this.turSNQuery.getQuery());
 
@@ -130,43 +132,31 @@ public class TurSNServer {
 			HttpResponse response;
 
 			logger.info(String.format("Viglet Turing Request: %s", turingURL.build().toString()));
+			try (CloseableHttpClient client = HttpClients.createDefault()) {
+				response = client.execute(httpGet);
+				HttpEntity entity = response.getEntity();
+				String result = EntityUtils.toString(entity, StandardCharsets.UTF_8);
+				
+				ObjectMapper objectMapper = new ObjectMapper();
+				TurSNSiteSearchBean turSNSiteSearchBean = objectMapper.readValue(result,
+						TurSNSiteSearchBean.class);
 
-			response = client.execute(httpGet);
+				TurSNDocumentList turSNDocumentList = new TurSNDocumentList();
+				List<TurSNDocument> turSNDocuments = new ArrayList<>();
 
-			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			StringBuffer result = new StringBuffer();
-			String line = "";
-			while ((line = rd.readLine()) != null) {
-				result.append(line);
+				turSNSiteSearchBean.getResults().getDocument().forEach(turSNSiteSearchDocumentBean -> {
+					TurSNDocument turSNDocument = new TurSNDocument();
+					turSNDocument.setContent(turSNSiteSearchDocumentBean);
+					turSNDocuments.add(turSNDocument);
+				});
+
+				TurSNSiteSearchQueryContext turSNSiteSearchQueryContext = turSNSiteSearchBean.getQueryContext();
+
+				turSNDocumentList.setTurSNDocuments(turSNDocuments);
+				turSNDocumentList.setQueryContext(turSNSiteSearchQueryContext);
+				queryTuringResponse.setResults(turSNDocumentList);
 			}
-			JSONArray resultJSON = new JSONObject(result.toString()).getJSONObject("results").getJSONArray("document");
-
-			TurSNDocumentList turSNDocumentList = new TurSNDocumentList();
-			List<TurSNDocument> turSNDocuments = new ArrayList<>();
-
-			for (int i = 0; i < resultJSON.length(); i++) {
-				TurSNDocument turSNDocument = new TurSNDocument();
-				turSNDocument.setContent(resultJSON.getJSONObject(i));
-				turSNDocuments.add(turSNDocument);
-			}
-
-			JSONObject queryContextJSON = new JSONObject(result.toString()).getJSONObject("queryContext");
-			ObjectMapper mapper = new ObjectMapper();
-			TurSNSiteSearchQueryContext turSNSiteSearchQueryContext = mapper.readValue(queryContextJSON.toString(),
-					TurSNSiteSearchQueryContext.class);
-
-			turSNDocumentList.setTurSNDocuments(turSNDocuments);
-			turSNDocumentList.setQueryContext(turSNSiteSearchQueryContext);
-			queryTuringResponse.setResults(turSNDocumentList);
-
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (UnsupportedOperationException | IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 
