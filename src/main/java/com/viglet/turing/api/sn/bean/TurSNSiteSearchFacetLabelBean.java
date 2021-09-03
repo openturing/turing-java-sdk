@@ -17,6 +17,11 @@
 
 package com.viglet.turing.api.sn.bean;
 
+/**
+ * Label of Facet with diferent locales of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchFacetLabelBean {
 
 	private String lang;

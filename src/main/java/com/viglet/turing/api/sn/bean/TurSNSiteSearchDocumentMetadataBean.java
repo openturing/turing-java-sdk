@@ -17,6 +17,11 @@
 
 package com.viglet.turing.api.sn.bean;
 
+/**
+ * Metadata of document with relation with facets of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchDocumentMetadataBean {
 
 	private String href;

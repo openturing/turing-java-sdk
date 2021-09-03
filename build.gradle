@@ -21,7 +21,7 @@ sourceCompatibility = 1.8
 
 jar {
     baseName = 'turing-java-sdk'
-    version =  '0.3.3'
+    version =  '0.3.4'
 }
 
 repositories {		
@@ -29,6 +29,7 @@ repositories {
 }
 
 javadoc {
+    title = "Turing AI Java SDK"
     source = sourceSets.main.allJava
     classpath = configurations.compile
     destinationDir = file("docs")

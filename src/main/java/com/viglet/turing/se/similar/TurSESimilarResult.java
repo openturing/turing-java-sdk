@@ -17,6 +17,11 @@
 
 package com.viglet.turing.se.similar;
 
+/**
+ * More Like This feature of Solr.
+ * 
+ * @since 0.3.4
+ */
 public class TurSESimilarResult {
 
 	private String id;

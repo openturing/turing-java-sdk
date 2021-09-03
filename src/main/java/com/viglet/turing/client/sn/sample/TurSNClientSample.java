@@ -5,6 +5,11 @@ import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.TurSNQuery;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
+/**
+ * Sample code to use this SDK.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNClientSample {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

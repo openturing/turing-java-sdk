@@ -4,7 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Configure the query that will send to Turing AI.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNQuery {
+
+	/**
+	 * Sorting types.
+	 * 
+	 * @since 0.3.4
+	 */
 	public enum ORDER {
 		asc, desc
 	}

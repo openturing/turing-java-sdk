@@ -2,6 +2,11 @@ package com.viglet.turing.client.sn;
 
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchDocumentBean;
 
+/**
+ * Get Info about a document result.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNDocument {
 
 	private TurSNSiteSearchDocumentBean turSNSiteSearchDocumentBean;

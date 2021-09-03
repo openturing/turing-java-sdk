@@ -22,7 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * List of jobs to index and deindex in Turing AI.
+ * 
  * @author Alexandre Oliveira
+ * 
+ * @since 0.3.4
  */
 public class TurSNJobItems implements Iterable<TurSNJobItem>, Serializable {
 	private static final long serialVersionUID = 1L;

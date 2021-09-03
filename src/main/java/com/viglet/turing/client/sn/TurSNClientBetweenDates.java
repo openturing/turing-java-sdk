@@ -2,6 +2,11 @@ package com.viglet.turing.client.sn;
 
 import java.util.Date;
 
+/**
+ * Create a query and specify between dates.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNClientBetweenDates {
 	
 	private String field;

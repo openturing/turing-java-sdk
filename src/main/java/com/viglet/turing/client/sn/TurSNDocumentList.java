@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
 
+/**
+ * List of Document result.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNDocumentList implements Iterable<TurSNDocument> {
 	private List<TurSNDocument> turSNDocuments = new ArrayList<>();
 	private TurSNSiteSearchQueryContext queryContext;

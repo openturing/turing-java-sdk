@@ -17,7 +17,9 @@
 package com.viglet.turing.client.sn.job;
 
 /**
- * @author Alexandre Oliveira
+ * Job Action Types.
+ * 
+ * @since 0.3.4
  */
 public enum TurSNJobAction {
 	CREATE, DELETE;
