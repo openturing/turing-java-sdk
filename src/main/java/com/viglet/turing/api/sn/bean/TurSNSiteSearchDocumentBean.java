@@ -20,6 +20,11 @@ package com.viglet.turing.api.sn.bean;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Documents of results of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchDocumentBean {
 	
 	private String source;

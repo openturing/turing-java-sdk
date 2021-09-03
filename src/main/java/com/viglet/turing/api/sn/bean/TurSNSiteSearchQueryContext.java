@@ -17,6 +17,11 @@
 
 package com.viglet.turing.api.sn.bean;
 
+/**
+ * Details about the results of query of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchQueryContext {
 
 	private int count;

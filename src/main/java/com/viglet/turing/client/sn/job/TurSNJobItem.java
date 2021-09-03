@@ -20,14 +20,19 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * Job to index and deindex in Turing AI.
+ * 
  * @author Alexandre Oliveira
+ * 
+ * @since 0.3.4
  */
-public class TurSNJobItem implements Serializable{
+
+public class TurSNJobItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private TurSNJobAction turSNJobAction;
-	
+
 	private Map<String, Object> attributes;
 
 	public Map<String, Object> getAttributes() {
@@ -45,6 +50,5 @@ public class TurSNJobItem implements Serializable{
 	public void setTurSNJobAction(TurSNJobAction turSNJobAction) {
 		this.turSNJobAction = turSNJobAction;
 	}
-
 
 }

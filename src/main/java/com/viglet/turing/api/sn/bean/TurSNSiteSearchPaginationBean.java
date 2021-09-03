@@ -17,6 +17,11 @@
 
 package com.viglet.turing.api.sn.bean;
 
+/**
+ * Pagination of results of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchPaginationBean {
 
 	private String type;

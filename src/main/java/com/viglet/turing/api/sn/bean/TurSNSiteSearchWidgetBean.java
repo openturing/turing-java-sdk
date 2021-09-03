@@ -20,7 +20,11 @@ package com.viglet.turing.api.sn.bean;
 import java.util.List;
 
 import com.viglet.turing.se.similar.TurSESimilarResult;
-
+/**
+ * Details about facets and facet and "more like this" of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchWidgetBean {
 
 	private List<TurSNSiteSearchFacetBean> facet;

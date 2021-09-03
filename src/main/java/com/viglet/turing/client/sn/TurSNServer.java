@@ -26,6 +26,11 @@ import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
 import java.util.logging.*;
 
+/**
+ * Connect to Turing AI Server.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNServer {
 
 	private static Logger logger = Logger.getLogger(TurSNServer.class.getName());

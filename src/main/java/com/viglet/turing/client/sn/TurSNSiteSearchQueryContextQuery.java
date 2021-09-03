@@ -2,6 +2,11 @@ package com.viglet.turing.client.sn;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Return details about Turing AI response query.
+ * 
+ * @since 0.3.4
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchQueryContextQuery {
 

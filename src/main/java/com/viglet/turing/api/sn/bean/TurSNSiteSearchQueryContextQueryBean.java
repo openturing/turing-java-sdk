@@ -17,6 +17,11 @@
 
 package com.viglet.turing.api.sn.bean;
 
+/**
+ * Details about the request query string of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchQueryContextQueryBean {
 
 	private String queryString;

@@ -19,6 +19,11 @@ package com.viglet.turing.api.sn.bean;
 
 import java.util.List;
 
+/**
+ * Facets of Turing AI Semantic Navigation response.
+ * 
+ * @since 0.3.4
+ */
 public class TurSNSiteSearchFacetBean {
 
 	private List<TurSNSiteSearchFacetItemBean> facets;
