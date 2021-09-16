@@ -18,6 +18,8 @@ package com.viglet.turing.client.sn.pagination;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.Optional;
 
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchPaginationBean;
 
@@ -47,34 +49,42 @@ public class TurSNPagination {
 		}).collect(Collectors.toList());
 	}
 
-	public TurSNPaginationItem findByType(String type) {
-		return new TurSNPaginationItem(paginationList.stream()
-				.filter(paginationItem -> paginationItem.getType().equals(type)).findFirst().get());
+	public Optional<TurSNPaginationItem> findByType(String type) {
+		TurSNSiteSearchPaginationBean turSNSiteSearchPaginationBean = paginationList.stream()
+				.filter(paginationItem -> Objects.nonNull(paginationItem))
+				.filter(paginationItem -> Objects.nonNull(paginationItem.getType()))
+				.filter(paginationItem -> paginationItem.getType().equals(type)).findFirst().orElse(null);
+
+		return turSNSiteSearchPaginationBean == null ? Optional.empty()
+				: Optional.of(new TurSNPaginationItem(turSNSiteSearchPaginationBean));
+
 	}
 
-	public TurSNPaginationItem getCurrentPage() {
+	public Optional<TurSNPaginationItem> getCurrentPage() {
 		return findByType(CURRENT);
 	}
 
-	public TurSNPaginationItem getNextPage() {
+	public Optional<TurSNPaginationItem> getNextPage() {
 		return findByType(NEXT);
 	}
 
-	public TurSNPaginationItem getPreviousPage() {
+	public Optional<TurSNPaginationItem> getPreviousPage() {
 		return findByType(PREVIOUS);
 	}
 
-	public TurSNPaginationItem getLastPage() {
-		return findByType(LAST);
+	public Optional<TurSNPaginationItem> getLastPage() {
+		return findByType(LAST).isPresent() ? findByType(LAST) : findByType(CURRENT);
+
 	}
 
-	public TurSNPaginationItem getFirstPage() {
-		return findByType(FIRST);
+	public Optional<TurSNPaginationItem> getFirstPage() {
+		return findByType(FIRST).isPresent() ? findByType(FIRST) : findByType(CURRENT);
+
 	}
 
 	public TurSNPaginationItem findByPageNumber(int pageNumber) {
 		return new TurSNPaginationItem(paginationList.stream()
-				.filter(paginationItem -> paginationItem.getPage() == pageNumber).findFirst().get());
+				.filter(paginationItem -> paginationItem.getPage() == pageNumber).findFirst().orElse(null));
 	}
 
 	public List<Integer> getPageNumberList() {

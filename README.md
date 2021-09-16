@@ -28,6 +28,12 @@ public class TurSNClientSample {
 		QueryTurSNResponse response = turSNServer.query(query);
 		TurSNDocumentList turSNResults = response.getResults();
 		TurSNPagination turSNPagination = response.getPagination();
-	}
+		
+		turSNPagination.getAllPages().forEach(page -> {
+			System.out.println(page.getLabel());
+		});
+		
+		System.out.println("---");
+		
+		turSNPagination.getLastPage().ifPresent(page -> System.out.println(page.getLabel()));
 }
-```

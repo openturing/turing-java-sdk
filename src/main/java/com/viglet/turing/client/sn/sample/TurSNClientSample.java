@@ -34,13 +34,18 @@ public class TurSNClientSample {
 		HttpTurSNServer turSNServer = new HttpTurSNServer("http://localhost:2700/api/sn/Sample");
 
 		TurSNQuery query = new TurSNQuery();
-		query.setQuery("hello");
-		query.setRows(10);
+		query.setQuery("*");
+		query.setRows(1);
 		query.setSortField(TurSNQuery.ORDER.asc);
 		query.setPageNumber(1);
 
 		QueryTurSNResponse response = turSNServer.query(query);
 		TurSNDocumentList turSNResults = response.getResults();
 		TurSNPagination turSNPagination = response.getPagination();
+		turSNPagination.getAllPages().forEach(page -> {
+			System.out.println(page.getLabel());
+		});
+		System.out.println("---");
+		turSNPagination.getLastPage().ifPresent(page -> System.out.println(page.getLabel()));
 	}
 }
