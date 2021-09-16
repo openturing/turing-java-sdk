@@ -3,17 +3,21 @@ buildscript {
     	  jacksonVersion = '2.9.7'
 	      log4jVersion = '1.2.7'
 		  httpClientVersion = '4.5.2'
-		  swaggerVersion = '2.8.0'
-		  jgitVersion = '4.11.0.201803080745-r'
 		 }
-		repositories {
-			mavenCentral()
-		}
+	
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	
+	dependencies {
+    	classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.github.openviglet'
 
@@ -31,20 +35,26 @@ repositories {
 javadoc {
     title = "Turing AI Java SDK"
     source = sourceSets.main.allJava
-    classpath = configurations.compile
+    classpath = configurations.implementation
     destinationDir = file("docs")
+}
+
+ shadowJar {
+   baseName = 'turing-java-sdk'
+   classifier = null
+   version = 'all'
 }
 
 dependencies {
    	// JSON
-    compile group: 'org.json', name: 'json', version:"${jsonVersion}"
+    implementation group: 'org.json', name: 'json', version:"${jsonVersion}"
     
     // Jackson
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
     
     // Log4J
-    compile group: 'log4j', name: 'log4j', version: "${log4jVersion}"
+    implementation group: 'log4j', name: 'log4j', version: "${log4jVersion}"
     
     // HTTP Client
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version:"${httpClientVersion}"
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version:"${httpClientVersion}"
 }

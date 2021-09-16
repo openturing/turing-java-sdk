@@ -31,12 +31,18 @@ public class TurSNPaginationItem {
 	private String apiURL;
 	private int pageNumber;
 
+	public TurSNPaginationItem() {
+		super();
+	}
+
 	public TurSNPaginationItem(TurSNSiteSearchPaginationBean turSNSiteSearchPaginationBean) {
 		super();
-		this.setType(turSNSiteSearchPaginationBean.getType());
-		this.setApiURL(turSNSiteSearchPaginationBean.getHref());
-		this.setLabel(turSNSiteSearchPaginationBean.getText());
-		this.setPageNumber(turSNSiteSearchPaginationBean.getPage());
+		if (turSNSiteSearchPaginationBean != null) {
+			this.setType(turSNSiteSearchPaginationBean.getType());
+			this.setApiURL(turSNSiteSearchPaginationBean.getHref());
+			this.setLabel(turSNSiteSearchPaginationBean.getText());
+			this.setPageNumber(turSNSiteSearchPaginationBean.getPage());
+		}
 	}
 
 	public String getType() {
