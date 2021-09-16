@@ -35,7 +35,7 @@ repositories {
 javadoc {
     title = "Turing AI Java SDK"
     source = sourceSets.main.allJava
-    classpath = configurations.implementation
+    classpath = configurations.runtimeClasspath
     destinationDir = file("docs")
 }
 
