@@ -1,0 +1,7 @@
+com.viglet.turing.api.sn.bean
+com.viglet.turing.client.sn
+com.viglet.turing.client.sn.job
+com.viglet.turing.client.sn.pagination
+com.viglet.turing.client.sn.response
+com.viglet.turing.client.sn.sample
+com.viglet.turing.se.similar
