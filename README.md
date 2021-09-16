@@ -27,6 +27,7 @@ public class TurSNClientSample {
 
 		QueryTurSNResponse response = turSNServer.query(query);
 		TurSNDocumentList turSNResults = response.getResults();
+		TurSNPagination turSNPagination = response.getPagination();
 	}
 }
 ```
