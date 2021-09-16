@@ -36,6 +36,4 @@ public class TurSNClientSample {
 		System.out.println("---");
 		
 		turSNPagination.getLastPage().ifPresent(page -> System.out.println(page.getLabel()));
-	}
 }
-```
