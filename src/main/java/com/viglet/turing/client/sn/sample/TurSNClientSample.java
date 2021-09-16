@@ -19,6 +19,7 @@ package com.viglet.turing.client.sn.sample;
 import com.viglet.turing.client.sn.HttpTurSNServer;
 import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.TurSNQuery;
+import com.viglet.turing.client.sn.pagination.TurSNPagination;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
 /**
@@ -40,5 +41,6 @@ public class TurSNClientSample {
 
 		QueryTurSNResponse response = turSNServer.query(query);
 		TurSNDocumentList turSNResults = response.getResults();
+		TurSNPagination turSNPagination = response.getPagination();
 	}
 }
