@@ -38,6 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchBean;
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
 import com.viglet.turing.client.sn.TurSNQuery.ORDER;
+import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
@@ -176,10 +177,12 @@ public class TurSNServer {
 
 				turSNDocumentList.setTurSNDocuments(turSNDocuments);
 				turSNDocumentList.setQueryContext(turSNSiteSearchQueryContext);
-				queryTuringResponse.setResults(turSNDocumentList);
 				
-				TurSNPagination turSNPagination = new TurSNPagination(turSNSiteSearchBean.getPagination());
-				queryTuringResponse.setPagination(turSNPagination);
+				queryTuringResponse.setResults(turSNDocumentList);	
+				queryTuringResponse.setPagination(new TurSNPagination(turSNSiteSearchBean.getPagination()));
+				
+				TurSNFacetFieldList facetFields = new TurSNFacetFieldList(turSNSiteSearchBean.getWidget().getFacet(), turSNSiteSearchBean.getWidget().getFacetToRemove());
+				queryTuringResponse.setFacetFields(facetFields);
 			}
 		} catch (UnsupportedOperationException | IOException | URISyntaxException e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);

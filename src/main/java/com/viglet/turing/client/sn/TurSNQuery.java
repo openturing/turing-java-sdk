@@ -116,7 +116,7 @@ public class TurSNQuery {
 
 	public void addTargetingRule(String... tr) {
 		if (this.targetingRules == null) {
-			this.targetingRules = new ArrayList<String>();
+			this.targetingRules = new ArrayList<>();
 		}
 		for (int i = 0; i < tr.length; i++) {
 			targetingRules.add(tr[i]);

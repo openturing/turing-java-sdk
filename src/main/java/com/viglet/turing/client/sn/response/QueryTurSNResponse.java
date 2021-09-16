@@ -16,7 +16,10 @@
 
 package com.viglet.turing.client.sn.response;
 
+import java.util.List;
+
 import com.viglet.turing.client.sn.TurSNDocumentList;
+import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 
 /**
@@ -32,6 +35,8 @@ public class QueryTurSNResponse {
 
 	private TurSNPagination pagination;
 
+	private TurSNFacetFieldList facetFields;
+
 	public TurSNDocumentList getResults() {
 		return results;
 	}
@@ -46,6 +51,14 @@ public class QueryTurSNResponse {
 
 	public void setPagination(TurSNPagination pagination) {
 		this.pagination = pagination;
+	}
+
+	public TurSNFacetFieldList getFacetFields() {
+		return facetFields;
+	}
+
+	public void setFacetFields(TurSNFacetFieldList facetFields) {
+		this.facetFields = facetFields;
 	}
 
 }

@@ -16,6 +16,8 @@
 
 package com.viglet.turing.client.sn.sample;
 
+import java.util.Arrays;
+
 import com.viglet.turing.client.sn.HttpTurSNServer;
 import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.TurSNQuery;
@@ -35,6 +37,7 @@ public class TurSNClientSample {
 
 		TurSNQuery query = new TurSNQuery();
 		query.setQuery("*");
+		query.setFieldQueries(Arrays.asList("type:Page"));
 		query.setRows(1);
 		query.setSortField(TurSNQuery.ORDER.asc);
 		query.setPageNumber(1);
@@ -47,5 +50,18 @@ public class TurSNClientSample {
 		});
 		System.out.println("---");
 		turSNPagination.getLastPage().ifPresent(page -> System.out.println(page.getLabel()));
+
+		System.out.println("---");
+
+		response.getFacetFields().forEach(facetFields -> {
+			System.out.println("Facet: " + facetFields.getLabel());
+			facetFields.getValues().forEach(
+					facetField -> System.out.println(facetField.getLabel() + "(" + facetField.getCount() + ")"));
+		});
+		 response.getFacetFields().getTurSNFacetToRemove().ifPresent(facetToRemove -> {
+			 System.out.println("---");
+			 System.out.println(facetToRemove.getLabel());
+			 facetToRemove.getValues().forEach(value -> System.out.println(value.getLabel()));
+		 });
 	}
 }
