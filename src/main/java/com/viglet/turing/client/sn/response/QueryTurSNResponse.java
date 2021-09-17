@@ -16,8 +16,6 @@
 
 package com.viglet.turing.client.sn.response;
 
-import java.util.List;
-
 import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;

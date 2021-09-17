@@ -21,6 +21,7 @@ import java.util.Arrays;
 import com.viglet.turing.client.sn.HttpTurSNServer;
 import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.TurSNQuery;
+import com.viglet.turing.client.sn.autocomplete.TurSNAutoCompleteQuery;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
 
@@ -37,7 +38,7 @@ public class TurSNClientSample {
 
 		TurSNQuery query = new TurSNQuery();
 		query.setQuery("*");
-		query.setFieldQueries(Arrays.asList("type:Page"));
+		//query.setFieldQueries(Arrays.asList("type:Page"));
 		query.setRows(1);
 		query.setSortField(TurSNQuery.ORDER.asc);
 		query.setPageNumber(1);
@@ -63,5 +64,11 @@ public class TurSNClientSample {
 			 System.out.println(facetToRemove.getLabel());
 			 facetToRemove.getValues().forEach(value -> System.out.println(value.getLabel()));
 		 });
+		 
+		 System.out.println("--- Auto complete");
+		 TurSNAutoCompleteQuery autoCompleteQuery = new TurSNAutoCompleteQuery();
+		 autoCompleteQuery.setQuery("vig");
+		 autoCompleteQuery.setRows(5);
+		 turSNServer.autoComplete(autoCompleteQuery).forEach(System.out::println);
 	}
 }
