@@ -1,10 +1,10 @@
 package com.viglet.turing.client.sn.facet;
 
-public class TurSNFacetFieldValue {
+import com.viglet.turing.client.sn.TurSNItemWithAPI;
+
+public class TurSNFacetFieldValue extends TurSNItemWithAPI {
 	
 	private String label;
-	
-	private String apiURL;
 	
 	private int count;
 
@@ -14,14 +14,6 @@ public class TurSNFacetFieldValue {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getApiURL() {
-		return apiURL;
-	}
-
-	public void setApiURL(String apiURL) {
-		this.apiURL = apiURL;
 	}
 
 	public int getCount() {

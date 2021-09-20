@@ -16,7 +16,9 @@
 
 package com.viglet.turing.client.sn.pagination;
 
+
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchPaginationBean;
+import com.viglet.turing.client.sn.TurSNItemWithAPI;
 
 /**
  * Pagination of results of Turing AI Semantic Navigation response with friendly
@@ -24,11 +26,10 @@ import com.viglet.turing.api.sn.bean.TurSNSiteSearchPaginationBean;
  * 
  * @since 0.3.4
  */
-public class TurSNPaginationItem {
-
+public class TurSNPaginationItem extends TurSNItemWithAPI {
+	
 	private String type;
 	private String label;
-	private String apiURL;
 	private int pageNumber;
 
 	public TurSNPaginationItem() {
@@ -59,14 +60,6 @@ public class TurSNPaginationItem {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getApiURL() {
-		return apiURL;
-	}
-
-	public void setApiURL(String apiURL) {
-		this.apiURL = apiURL;
 	}
 
 	public int getPageNumber() {

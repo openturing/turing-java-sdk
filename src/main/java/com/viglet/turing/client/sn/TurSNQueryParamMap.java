@@ -14,33 +14,17 @@
  * limitations under the License.
  */
 
-package com.viglet.turing.client.sn.autocomplete;
+package com.viglet.turing.client.sn;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
- * Auto Complete Query Builder
+ * HashMap class for query parameters.
  * 
  * @since 0.3.4
  */
-public class TurSNAutoCompleteQuery {
-
-	private String query;
-
-	private int rows;
-
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+public class TurSNQueryParamMap extends LinkedHashMap<String, List<String>> {
+	private static final long serialVersionUID = 1L;
 
 }

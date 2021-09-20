@@ -117,7 +117,7 @@ public class TurSNServer {
 
 		try {
 			turingURL = new URIBuilder(turSNServer + "/search").addParameter("q", this.turSNQuery.getQuery());
-
+			
 			// Rows
 			if (this.turSNQuery.getRows() > 0) {
 				turingURL.addParameter("rows", Integer.toString(this.turSNQuery.getRows()));
