@@ -29,6 +29,10 @@ public class TurSNFacetFieldList implements Iterable<TurSNFacetField> {
 				TurSNFacetFieldValueList turSNFacetFieldValues = new TurSNFacetFieldValueList(facet.getFacets());
 				TurSNFacetField turSNFacetField = new TurSNFacetField();
 				turSNFacetField.setLabel(facet.getLabel().getText());
+				turSNFacetField.setName(facet.getName());
+				turSNFacetField.setDescription(facet.getDescription());
+				turSNFacetField.setMultiValued(facet.isMultiValued());
+				turSNFacetField.setType(facet.getType());
 				turSNFacetField.setValues(turSNFacetFieldValues);
 				this.turSNFacetFields.add(turSNFacetField);
 			}

@@ -26,18 +26,63 @@ import java.util.List;
 public class TurSNSiteSearchFacetBean {
 
 	private List<TurSNSiteSearchFacetItemBean> facets;
+	
 	private TurSNSiteSearchFacetLabelBean label;
+	
+	private String name;
+	
+	private String description;
+	
+	private boolean multiValued;
+	
+	private String type;
+
 	public List<TurSNSiteSearchFacetItemBean> getFacets() {
 		return facets;
 	}
+
 	public void setFacets(List<TurSNSiteSearchFacetItemBean> facets) {
 		this.facets = facets;
 	}
+
 	public TurSNSiteSearchFacetLabelBean getLabel() {
 		return label;
 	}
+
 	public void setLabel(TurSNSiteSearchFacetLabelBean label) {
 		this.label = label;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isMultiValued() {
+		return multiValued;
+	}
+
+	public void setMultiValued(boolean multiValued) {
+		this.multiValued = multiValued;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }
