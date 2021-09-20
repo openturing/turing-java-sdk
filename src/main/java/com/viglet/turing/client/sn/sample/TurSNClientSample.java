@@ -55,7 +55,6 @@ public class TurSNClientSample {
 		turSNPagination.getLastPage().ifPresent(page -> System.out.println(page.getLabel()));
 
 		System.out.println("---");
-
 		response.getFacetFields().forEach(facetFields -> {
 			System.out.println(String.format("Facet: %s - %s - %s - %s", facetFields.getLabel(), facetFields.getName(),
 					facetFields.getDescription(), facetFields.getType()));
@@ -66,7 +65,7 @@ public class TurSNClientSample {
 			});
 
 		});
-		response.getFacetFields().getTurSNFacetToRemove().ifPresent(facetToRemove -> {
+		response.getFacetFields().getFacetWithRemovedValues().ifPresent(facetToRemove -> {
 			System.out.println("---");
 			System.out.println(facetToRemove.getLabel());
 			facetToRemove.getValues().forEach(value -> {

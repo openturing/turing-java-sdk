@@ -44,11 +44,11 @@ public class TurSNFacetFieldList implements Iterable<TurSNFacetField> {
 		return turSNFacetFields.iterator();
 	}
 
-	public List<TurSNFacetField> getTurSNFacetFields() {
+	public List<TurSNFacetField> getFields() {
 		return turSNFacetFields;
 	}
 
-	public Optional<TurSNFacetField> getTurSNFacetToRemove() {
+	public Optional<TurSNFacetField> getFacetWithRemovedValues() {
 		return Optional.ofNullable(turSNFacetToRemove);
 	}
 }
