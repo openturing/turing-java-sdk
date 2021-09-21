@@ -28,7 +28,7 @@ import com.viglet.turing.client.sn.TurSNItemWithAPI;
  */
 public class TurSNPaginationItem extends TurSNItemWithAPI {
 	
-	private String type;
+	private TurSNPaginationType type;
 	private String label;
 	private int pageNumber;
 
@@ -46,11 +46,11 @@ public class TurSNPaginationItem extends TurSNItemWithAPI {
 		}
 	}
 
-	public String getType() {
+	public TurSNPaginationType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TurSNPaginationType type) {
 		this.type = type;
 	}
 
