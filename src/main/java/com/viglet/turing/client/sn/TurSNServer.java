@@ -18,6 +18,7 @@ package com.viglet.turing.client.sn;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,9 +60,34 @@ public class TurSNServer {
 
 	private TurSNQuery turSNQuery;
 
+	private URL serverURL;
+
+	private String siteName;
+
+	private String locale;
+
+	@Deprecated
 	public TurSNServer(String turSNServer) {
 		super();
 		this.turSNServer = turSNServer;
+
+	}
+
+	public TurSNServer(URL serverURL, String siteName) {
+		super();
+		this.serverURL = serverURL;
+		this.siteName = siteName;
+		this.locale = "default";
+		this.turSNServer = String.format("%s/api/sn/%s", this.serverURL, this.siteName, this.locale);
+
+	}
+
+	public TurSNServer(URL serverURL, String siteName, String locale) {
+		super();
+		this.serverURL = serverURL;
+		this.siteName = siteName;
+		this.locale = locale;
+		this.turSNServer = String.format("%s/api/sn/%s", this.serverURL, this.siteName);
 
 	}
 
@@ -73,6 +99,30 @@ public class TurSNServer {
 		this.turSNServer = turingServer;
 	}
 
+	public URL getServerURL() {
+		return serverURL;
+	}
+
+	public void setServerURL(URL serverURL) {
+		this.serverURL = serverURL;
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public List<String> autoComplete(TurSNAutoCompleteQuery autoCompleteQuery) {
 		List<String> autoCompleteList = new ArrayList<>();
 		URIBuilder turingURL;
@@ -80,8 +130,7 @@ public class TurSNServer {
 		HttpGet httpGet;
 
 		try {
-			turingURL = new URIBuilder(turSNServer + "/ac")
-					.addParameter("q", autoCompleteQuery.getQuery())
+			turingURL = new URIBuilder(turSNServer + "/ac").addParameter("q", autoCompleteQuery.getQuery())
 					.addParameter("rows", Integer.toString(autoCompleteQuery.getRows()));
 
 			httpGet = new HttpGet(turingURL.build());
@@ -117,7 +166,7 @@ public class TurSNServer {
 
 		try {
 			turingURL = new URIBuilder(turSNServer + "/search").addParameter("q", this.turSNQuery.getQuery());
-			
+
 			// Rows
 			if (this.turSNQuery.getRows() > 0) {
 				turingURL.addParameter("rows", Integer.toString(this.turSNQuery.getRows()));
