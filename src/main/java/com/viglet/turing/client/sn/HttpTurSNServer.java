@@ -16,6 +16,8 @@
 
 package com.viglet.turing.client.sn;
 
+import java.net.URL;
+
 /**
  * HTTP of TurnSNServer.
  * 
@@ -23,9 +25,18 @@ package com.viglet.turing.client.sn;
  */
 public class HttpTurSNServer extends TurSNServer {
 
+	@Deprecated
 	public HttpTurSNServer(String turSNServer) {
 		super(turSNServer);
 
+	}
+	public HttpTurSNServer(URL serverURL, String siteName) {
+		super(serverURL, siteName);
+		}
+
+	public HttpTurSNServer(URL serverURL, String siteName, String locale) {
+		super(serverURL, siteName, locale);
+	
 	}
 
 }
