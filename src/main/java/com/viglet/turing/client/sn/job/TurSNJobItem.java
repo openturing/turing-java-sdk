@@ -27,13 +27,23 @@ import java.util.Map;
  * @since 0.3.4
  */
 
-public class TurSNJobItem implements Serializable {
+public class TurSNJobItem implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
+	private String locale;
+	
 	private TurSNJobAction turSNJobAction;
+	
+	private transient Map<String, Object> attributes;
 
-	private Map<String, Object> attributes;
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
 
 	public Map<String, Object> getAttributes() {
 		return attributes;
@@ -49,6 +59,10 @@ public class TurSNJobItem implements Serializable {
 
 	public void setTurSNJobAction(TurSNJobAction turSNJobAction) {
 		this.turSNJobAction = turSNJobAction;
+	}
+
+	public String toString() {
+		return String.format("action: %s, attributes %s", this.getTurSNJobAction(), this.getAttributes().toString());
 	}
 
 }
