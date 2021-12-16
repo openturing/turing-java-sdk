@@ -46,13 +46,13 @@ public class TurSNClientSample {
 			System.out.println("--- Locales");
 			turSNServer = new HttpTurSNServer(new URL("http://localhost:2700"), "Sample");
 			turSNServer.getLocales().forEach(System.out::println);
-			
+
 			System.out.println("--- Query");
 			turSNServer = new HttpTurSNServer(new URL("http://localhost:2700"), "Sample", "en_US");
 
 			TurSNQuery query = new TurSNQuery();
-			query.setQuery("tast");
-			//query.setFieldQueries(Arrays.asList("type:Page"));
+			query.setQuery("tast"); // fix to test
+			query.setFieldQueries(Arrays.asList("type:Page"));
 			query.setRows(1);
 			query.setSortField(TurSNQuery.ORDER.asc);
 			query.setPageNumber(1);
@@ -91,15 +91,19 @@ public class TurSNClientSample {
 			});
 			System.out.println("--- Did You Mean");
 			if (response.getDidYouMean().isCorrectedText()) {
-				System.out.println(String.format("Original Query %s: %s", response.getDidYouMean().getOriginal().getText(), response.getDidYouMean().getOriginal().getLink()));
-				System.out.println(String.format("Correct Query %s: %s", response.getDidYouMean().getCorrected().getText(), response.getDidYouMean().getCorrected().getLink()));
+				System.out.println(
+						String.format("Original Query %s: %s", response.getDidYouMean().getOriginal().getText(),
+								response.getDidYouMean().getOriginal().getLink()));
+				System.out.println(
+						String.format("Correct Query %s: %s", response.getDidYouMean().getCorrected().getText(),
+								response.getDidYouMean().getCorrected().getLink()));
 			}
-			
+
 			System.out.println("--- Auto complete");
 			TurSNAutoCompleteQuery autoCompleteQuery = new TurSNAutoCompleteQuery();
 			autoCompleteQuery.setQuery("vig");
 			autoCompleteQuery.setRows(5);
-			turSNServer.autoComplete(autoCompleteQuery).forEach(System.out::println);			
+			turSNServer.autoComplete(autoCompleteQuery).forEach(System.out::println);
 		} catch (MalformedURLException e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
 		}
