@@ -1,8 +1,8 @@
 buildscript {
-    ext { jsonVersion = '20140107'
-    	  jacksonVersion = '2.9.7'
-	      log4jVersion = '1.2.7'
-		  httpClientVersion = '4.5.2'
+    ext {	jsonVersion = '20140107'
+			jacksonVersion = '2.9.7'
+			log4jVersion = '1.2.7'
+			httpClientVersion = '4.5.2'
 		 }
 	
 	repositories {
