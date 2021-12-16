@@ -13,32 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.viglet.turing.client.sn;
-
-import java.net.URL;
+package com.viglet.turing.api.sn.bean.spellcheck;
 
 /**
- * HTTP of TurnSNServer.
+ * Spell Check Text of Turing AI Semantic Navigation response.
  * 
  * @author Alexandre Oliveira
  * 
- * @since 0.3.4
+ * @since 0.3.5
  */
-public class HttpTurSNServer extends TurSNServer {
-
-	@Deprecated
-	public HttpTurSNServer(String turSNServer) {
-		super(turSNServer);
-
+public class TurSNSiteSpellCheckText {
+	private String text;
+	private String link;
+	public String getText() {
+		return text;
 	}
-	public HttpTurSNServer(URL serverURL, String siteName) {
-		super(serverURL, siteName);
-		}
 
-	public HttpTurSNServer(URL serverURL, String siteName, String locale) {
-		super(serverURL, siteName, locale);
-	
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }

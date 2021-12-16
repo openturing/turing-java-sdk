@@ -3,8 +3,13 @@
 
 # Java library to access Viglet Turing
 
-
 Documentation: [https://openturing.github.io/turing-java-sdk/](https://openturing.github.io/turing-java-sdk/)
+
+## Test Sample Code
+```bash
+./gradlew shadowJar
+java -cp build/libs/turing-java-sdk-all.jar com.viglet.turing.client.sn.sample.TurSNClientSample
+```
 
 ```java
 package com.viglet.turing.client.sn.sample;

@@ -21,6 +21,8 @@ import java.util.List;
 /**
  * List of documents with results of query of Turing AI Semantic Navigation response.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNSiteSearchResultsBean {

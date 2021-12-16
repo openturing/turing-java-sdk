@@ -21,6 +21,8 @@ import java.util.Date;
 /**
  * Create a query and specify between dates.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNClientBetweenDates {

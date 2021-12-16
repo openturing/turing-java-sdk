@@ -22,6 +22,8 @@ import java.util.List;
 /**
  * HashMap class for query parameters.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNQueryParamMap extends LinkedHashMap<String, List<String>> {

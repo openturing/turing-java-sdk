@@ -28,6 +28,8 @@ import org.apache.http.client.utils.URIBuilder;
 /**
  * Class with apiURL and method to return query parameters.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNItemWithAPI {

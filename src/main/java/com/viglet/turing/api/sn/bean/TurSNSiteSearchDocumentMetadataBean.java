@@ -19,6 +19,8 @@ package com.viglet.turing.api.sn.bean;
 /**
  * Metadata of document with relation with facets of Turing AI Semantic Navigation response.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNSiteSearchDocumentMetadataBean {

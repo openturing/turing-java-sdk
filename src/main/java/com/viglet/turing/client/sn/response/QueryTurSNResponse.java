@@ -17,6 +17,7 @@
 package com.viglet.turing.client.sn.response;
 
 import com.viglet.turing.client.sn.TurSNDocumentList;
+import com.viglet.turing.client.sn.didyoumean.TurSNDidYouMean;
 import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 
@@ -32,6 +33,8 @@ public class QueryTurSNResponse {
 	private TurSNDocumentList results;
 
 	private TurSNPagination pagination;
+
+	private TurSNDidYouMean didYouMean;
 
 	private TurSNFacetFieldList facetFields;
 
@@ -57,6 +60,14 @@ public class QueryTurSNResponse {
 
 	public void setFacetFields(TurSNFacetFieldList facetFields) {
 		this.facetFields = facetFields;
+	}
+
+	public TurSNDidYouMean getDidYouMean() {
+		return didYouMean;
+	}
+
+	public void setDidYouMean(TurSNDidYouMean didYouMean) {
+		this.didYouMean = didYouMean;
 	}
 
 }

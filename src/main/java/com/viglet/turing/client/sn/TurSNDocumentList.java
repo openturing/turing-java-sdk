@@ -25,6 +25,8 @@ import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
 /**
  * List of Document result.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNDocumentList implements Iterable<TurSNDocument> {

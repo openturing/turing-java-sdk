@@ -19,6 +19,8 @@ package com.viglet.turing.client.sn.autocomplete;
 /**
  * Auto Complete Query Builder
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNAutoCompleteQuery {

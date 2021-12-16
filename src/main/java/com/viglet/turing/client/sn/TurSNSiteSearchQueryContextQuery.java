@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Return details about Turing AI response query.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -19,6 +19,8 @@ package com.viglet.turing.client.sn;
 /**
  * Specify and retrieve Turing AI sort.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNSortField {

@@ -22,6 +22,8 @@ import java.util.Map;
 /**
  * Documents of results of Turing AI Semantic Navigation response.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNSiteSearchDocumentBean {

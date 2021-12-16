@@ -18,9 +18,14 @@ package com.viglet.turing.api.sn.bean;
 
 import java.util.List;
 
+import com.viglet.turing.api.sn.bean.spellcheck.TurSNSiteSpellCheckBean;
 import com.viglet.turing.se.similar.TurSESimilarResult;
+
 /**
- * Details about facets and facet and "more like this" of Turing AI Semantic Navigation response.
+ * Details about facets and facet and "more like this" of Turing AI Semantic
+ * Navigation response.
+ * 
+ * @author Alexandre Oliveira
  * 
  * @since 0.3.4
  */
@@ -29,28 +34,46 @@ public class TurSNSiteSearchWidgetBean {
 	private List<TurSNSiteSearchFacetBean> facet;
 	private TurSNSiteSearchFacetBean facetToRemove;
 	private List<TurSESimilarResult> similar;
-	
+	private TurSNSiteSpellCheckBean spellCheck;
+	private List<TurSNSiteLocaleBean> locales;
+
 	public List<TurSNSiteSearchFacetBean> getFacet() {
 		return facet;
 	}
+
 	public void setFacet(List<TurSNSiteSearchFacetBean> facet) {
 		this.facet = facet;
 	}
+
 	public TurSNSiteSearchFacetBean getFacetToRemove() {
 		return facetToRemove;
 	}
+
 	public void setFacetToRemove(TurSNSiteSearchFacetBean facetToRemove) {
 		this.facetToRemove = facetToRemove;
 	}
+
 	public List<TurSESimilarResult> getSimilar() {
 		return similar;
 	}
+
 	public void setSimilar(List<TurSESimilarResult> similar) {
 		this.similar = similar;
 	}
 
-	
+	public TurSNSiteSpellCheckBean getSpellCheck() {
+		return spellCheck;
+	}
 
-	
+	public void setSpellCheck(TurSNSiteSpellCheckBean spellCheck) {
+		this.spellCheck = spellCheck;
+	}
 
+	public List<TurSNSiteLocaleBean> getLocales() {
+		return locales;
+	}
+
+	public void setLocales(List<TurSNSiteLocaleBean> locales) {
+		this.locales = locales;
+	}
 }

@@ -13,32 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.viglet.turing.client.sn.didyoumean;
 
-package com.viglet.turing.client.sn;
-
-import java.net.URL;
+import com.viglet.turing.api.sn.bean.spellcheck.TurSNSiteSpellCheckText;
 
 /**
- * HTTP of TurnSNServer.
+ * Did You Mean Text Class.
  * 
  * @author Alexandre Oliveira
  * 
- * @since 0.3.4
+ * @since 0.3.5
  */
-public class HttpTurSNServer extends TurSNServer {
+public class TurSNDidYouMeanText {
+	private String text;
+	private String link;
 
-	@Deprecated
-	public HttpTurSNServer(String turSNServer) {
-		super(turSNServer);
-
+	public TurSNDidYouMeanText() {
+		super();
 	}
-	public HttpTurSNServer(URL serverURL, String siteName) {
-		super(serverURL, siteName);
-		}
-
-	public HttpTurSNServer(URL serverURL, String siteName, String locale) {
-		super(serverURL, siteName, locale);
 	
+	public TurSNDidYouMeanText(TurSNSiteSpellCheckText turSNSiteSpellCheckText) {
+		super();
+		this.text = turSNSiteSpellCheckText.getText();
+		this.link = turSNSiteSpellCheckText.getLink();
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }

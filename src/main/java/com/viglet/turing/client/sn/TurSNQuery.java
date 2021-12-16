@@ -23,6 +23,8 @@ import java.util.List;
 /**
  * Configure the query that will send to Turing AI.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNQuery {

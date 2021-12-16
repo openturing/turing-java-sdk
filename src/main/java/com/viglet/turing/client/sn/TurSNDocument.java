@@ -21,6 +21,8 @@ import com.viglet.turing.api.sn.bean.TurSNSiteSearchDocumentBean;
 /**
  * Get Info about a document result.
  * 
+ * @author Alexandre Oliveira
+ * 
  * @since 0.3.4
  */
 public class TurSNDocument {

@@ -17,7 +17,10 @@
 package com.viglet.turing.api.sn.bean;
 
 /**
- * Details about the request query string of Turing AI Semantic Navigation response.
+ * Details about the request query string of Turing AI Semantic Navigation
+ * response.
+ * 
+ * @author Alexandre Oliveira
  * 
  * @since 0.3.4
  */
@@ -25,17 +28,29 @@ public class TurSNSiteSearchQueryContextQueryBean {
 
 	private String queryString;
 	private String sort;
+	private String locale;
+
 	public String getQueryString() {
 		return queryString;
 	}
+
 	public void setQueryString(String queryString) {
 		this.queryString = queryString;
 	}
+
 	public String getSort() {
 		return sort;
 	}
+
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
 
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
 }
