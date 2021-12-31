@@ -25,6 +25,7 @@ package com.viglet.turing.api.sn.bean.spellcheck;
 public class TurSNSiteSpellCheckBean {
 
 	private boolean correctedText;
+	private boolean usingCorrectedText;
 	private TurSNSiteSpellCheckText original;
 	private TurSNSiteSpellCheckText corrected;
 
@@ -50,6 +51,14 @@ public class TurSNSiteSpellCheckBean {
 
 	public void setCorrectedText(boolean correctedText) {
 		this.correctedText = correctedText;
+	}
+
+	public boolean isUsingCorrectedText() {
+		return usingCorrectedText;
+	}
+
+	public void setUsingCorrectedText(boolean usingCorrectedText) {
+		this.usingCorrectedText = usingCorrectedText;
 	}
 
 }
