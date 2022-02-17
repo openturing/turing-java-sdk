@@ -45,12 +45,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchBean;
 import com.viglet.turing.api.sn.bean.TurSNSiteSearchQueryContext;
+import com.viglet.turing.api.sn.bean.TurSNSiteSpotlightDocumentBean;
 import com.viglet.turing.client.sn.TurSNQuery.ORDER;
 import com.viglet.turing.client.sn.autocomplete.TurSNAutoCompleteQuery;
 import com.viglet.turing.client.sn.didyoumean.TurSNDidYouMean;
 import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
+import com.viglet.turing.client.sn.spotlight.TurSNSpotlightDocument;
 
 import java.util.logging.*;
 
@@ -157,7 +159,8 @@ public class TurSNServer {
 		HttpResponse response = client.execute(httpGet);
 		HttpEntity entity = response.getEntity();
 		String result = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-		return new ObjectMapper().readValue(result, new TypeReference<List<TurSNLocale>>() {});
+		return new ObjectMapper().readValue(result, new TypeReference<List<TurSNLocale>>() {
+		});
 	}
 
 	private List<String> executeAutoCompleteRequest(HttpGet httpGet, CloseableHttpClient client)
@@ -222,7 +225,17 @@ public class TurSNServer {
 		queryTuringResponse.setPagination(new TurSNPagination(turSNSiteSearchBean.getPagination()));
 		queryTuringResponse.setFacetFields(setFacetFieldsResponse(turSNSiteSearchBean));
 		queryTuringResponse.setDidYouMean(new TurSNDidYouMean(turSNSiteSearchBean.getWidget().getSpellCheck()));
+		queryTuringResponse
+				.setSpotlightDocuments(setSpotlightDocumetsResponse(turSNSiteSearchBean.getWidget().getSpotlights()));
 		return queryTuringResponse;
+	}
+
+	private List<TurSNSpotlightDocument> setSpotlightDocumetsResponse(
+			List<TurSNSiteSpotlightDocumentBean> turSNSiteSpotlightDocumentBeans) {
+		List<TurSNSpotlightDocument> turSNSpotlightDocuments = new ArrayList<>();
+		turSNSiteSpotlightDocumentBeans.forEach(turSNSiteSpotlightDocumentBean -> turSNSpotlightDocuments
+				.add(new TurSNSpotlightDocument(turSNSiteSpotlightDocumentBean)));
+		return turSNSpotlightDocuments;
 	}
 
 	private TurSNFacetFieldList setFacetFieldsResponse(TurSNSiteSearchBean turSNSiteSearchBean) {

@@ -15,6 +15,8 @@
  */
 package com.viglet.turing.api.sn.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Default Fields of Turing AI Semantic Navigation response.
  * 
@@ -22,6 +24,8 @@ package com.viglet.turing.api.sn.bean;
  * 
  * @since 0.3.4
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchDefaultFieldsBean {
 
 	private String title;

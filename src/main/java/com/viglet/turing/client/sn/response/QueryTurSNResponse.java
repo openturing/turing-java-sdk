@@ -16,10 +16,13 @@
 
 package com.viglet.turing.client.sn.response;
 
+import java.util.List;
+
 import com.viglet.turing.client.sn.TurSNDocumentList;
 import com.viglet.turing.client.sn.didyoumean.TurSNDidYouMean;
 import com.viglet.turing.client.sn.facet.TurSNFacetFieldList;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
+import com.viglet.turing.client.sn.spotlight.TurSNSpotlightDocument;
 
 /**
  * Return results of Turing AI response.
@@ -38,6 +41,8 @@ public class QueryTurSNResponse {
 
 	private TurSNFacetFieldList facetFields;
 
+	private List<TurSNSpotlightDocument> spotlightDocuments;
+	
 	public TurSNDocumentList getResults() {
 		return results;
 	}
@@ -68,6 +73,14 @@ public class QueryTurSNResponse {
 
 	public void setDidYouMean(TurSNDidYouMean didYouMean) {
 		this.didYouMean = didYouMean;
+	}
+
+	public List<TurSNSpotlightDocument> getSpotlightDocuments() {
+		return spotlightDocuments;
+	}
+
+	public void setSpotlightDocuments(List<TurSNSpotlightDocument> spotlightDocuments) {
+		this.spotlightDocuments = spotlightDocuments;
 	}
 
 }

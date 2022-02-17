@@ -19,6 +19,7 @@ package com.viglet.turing.client.sn.sample;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,6 +30,7 @@ import com.viglet.turing.client.sn.TurSNServer;
 import com.viglet.turing.client.sn.autocomplete.TurSNAutoCompleteQuery;
 import com.viglet.turing.client.sn.pagination.TurSNPagination;
 import com.viglet.turing.client.sn.response.QueryTurSNResponse;
+import com.viglet.turing.client.sn.spotlight.TurSNSpotlightDocument;
 
 /**
  * Sample code to use this SDK.
@@ -51,7 +53,11 @@ public class TurSNClientSample {
 			turSNServer = new HttpTurSNServer(new URL("http://localhost:2700"), "Sample", "en_US");
 
 			TurSNQuery query = new TurSNQuery();
-			query.setQuery("tast"); // fix to test
+			if (args.length > 0) {
+				query.setQuery(args[0]);
+			} else {
+				query.setQuery("tast"); // fix to test
+			}
 			query.setFieldQueries(Arrays.asList("type:Page"));
 			query.setRows(1);
 			query.setSortField(TurSNQuery.ORDER.asc);
@@ -59,6 +65,14 @@ public class TurSNClientSample {
 
 			QueryTurSNResponse response = turSNServer.query(query);
 			TurSNDocumentList turSNResults = response.getResults();
+
+			System.out.println("--- Spotlight Documents");
+			List<TurSNSpotlightDocument> turSNSpotlightDocuments = response.getSpotlightDocuments();
+			turSNSpotlightDocuments.forEach(turSNSpotlightDocument -> System.out
+					.println(String.format("%s %s %s", turSNSpotlightDocument.getPosition(),
+							turSNSpotlightDocument.getTitle(), turSNSpotlightDocument.getContent())));
+
+			System.out.println("--- Pagination");
 			TurSNPagination turSNPagination = response.getPagination();
 			turSNPagination.getAllPages().forEach(page -> {
 				System.out.println(page.getLabel());

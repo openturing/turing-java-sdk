@@ -18,6 +18,7 @@ package com.viglet.turing.api.sn.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.viglet.turing.api.sn.bean.spellcheck.TurSNSiteSpellCheckBean;
 import com.viglet.turing.se.similar.TurSESimilarResult;
 
@@ -29,6 +30,8 @@ import com.viglet.turing.se.similar.TurSESimilarResult;
  * 
  * @since 0.3.4
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchWidgetBean {
 
 	private List<TurSNSiteSearchFacetBean> facet;
@@ -36,7 +39,8 @@ public class TurSNSiteSearchWidgetBean {
 	private List<TurSESimilarResult> similar;
 	private TurSNSiteSpellCheckBean spellCheck;
 	private List<TurSNSiteLocaleBean> locales;
-
+	private List<TurSNSiteSpotlightDocumentBean> spotlights;
+	
 	public List<TurSNSiteSearchFacetBean> getFacet() {
 		return facet;
 	}
@@ -76,4 +80,13 @@ public class TurSNSiteSearchWidgetBean {
 	public void setLocales(List<TurSNSiteLocaleBean> locales) {
 		this.locales = locales;
 	}
+
+	public List<TurSNSiteSpotlightDocumentBean> getSpotlights() {
+		return spotlights;
+	}
+
+	public void setSpotlights(List<TurSNSiteSpotlightDocumentBean> spotlights) {
+		this.spotlights = spotlights;
+	}
+	
 }

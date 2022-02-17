@@ -16,6 +16,7 @@
 
 package com.viglet.turing.api.sn.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.viglet.turing.client.sn.pagination.TurSNPaginationType;
 
 /**
@@ -25,6 +26,8 @@ import com.viglet.turing.client.sn.pagination.TurSNPaginationType;
  * 
  * @since 0.3.4
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchPaginationBean {
 
 	private TurSNPaginationType type;

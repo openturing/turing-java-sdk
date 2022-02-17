@@ -15,6 +15,8 @@
  */
 package com.viglet.turing.api.sn.bean.spellcheck;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Spell Check of Turing AI Semantic Navigation response.
  * 
@@ -22,6 +24,8 @@ package com.viglet.turing.api.sn.bean.spellcheck;
  * 
  * @since 0.3.5
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSpellCheckBean {
 
 	private boolean correctedText;

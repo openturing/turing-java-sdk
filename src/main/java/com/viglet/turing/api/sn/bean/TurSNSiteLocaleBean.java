@@ -15,6 +15,8 @@
  */
 package com.viglet.turing.api.sn.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Locale of Turing AI Semantic Navigation response.
  * 
@@ -23,6 +25,7 @@ package com.viglet.turing.api.sn.bean;
  * @since 0.3.5
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteLocaleBean {
 	private String locale;
 	private String link;

@@ -18,6 +18,8 @@ package com.viglet.turing.api.sn.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * List of documents with results of query of Turing AI Semantic Navigation response.
  * 
@@ -25,6 +27,8 @@ import java.util.List;
  * 
  * @since 0.3.4
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchResultsBean {
 
 	private List<TurSNSiteSearchDocumentBean> document;

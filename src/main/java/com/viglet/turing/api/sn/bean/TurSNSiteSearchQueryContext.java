@@ -16,6 +16,8 @@
 
 package com.viglet.turing.api.sn.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Details about the results of query of Turing AI Semantic Navigation response.
  * 
@@ -23,6 +25,8 @@ package com.viglet.turing.api.sn.bean;
  * 
  * @since 0.3.4
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurSNSiteSearchQueryContext {
 
 	private int count;
